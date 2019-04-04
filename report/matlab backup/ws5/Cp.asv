@@ -1,0 +1,51 @@
+close all
+clc
+clear
+
+r = 0.175; % radius of blade
+RPM = [449  426 497 531 729 787 823];
+p =   [0.049; 0.051; 0.077; 0.104; 0.162; 0.193; 0.204]; % power of pump
+Vw =  [2.7; 3.2; 3.5; 4.2; 4.5; 5.2; 5.5]; % wind speed
+% w_raw = 2 * pi / 60 .* RPM;
+figure()
+hold on
+plot(Vw, RPM, 'x')
+title('RPM vs v_w raw')
+xlabel('Vw')
+ylabel('RPM')
+hold off
+% get fitted linear equation
+% new_RPM = [366.119674185464;448.221804511278;
+%            497.483082706767;612.426065162907;661.687343358396;
+%            776.630325814536;825.891604010025]
+% new_RPM get from fitted linear equation
+Vw_new = [2.7; 3.2; 3.5; 4.2; 4.5; 5.2; 5.5];
+rpm_new = (Vw_new .* 1.5e+002 - 25);
+figure()
+hold on
+plot(Vw, rpm_new, 'x')
+title('RPM vs v_w fitted')
+xlabel('Vw')
+ylabel('RPM')
+hold off
+
+% rotation speed
+w = 2 * pi / 60 .* rpm_new;
+
+% calculate lambda
+lambda = [w * r ./ Vw_new];
+
+% density of air
+rho = 1.225;
+A = pi * (r^2);
+
+% calculate Cp
+Cp_cp = 2 .* p ./ ((Vw_new .^3) .* (rho * A));
+
+figure()
+hold on
+plot(lambda, Cp_cp,'x');
+title('Cp vs lambda')
+xlabel('lambda')
+ylabel('Cp')
+hold off

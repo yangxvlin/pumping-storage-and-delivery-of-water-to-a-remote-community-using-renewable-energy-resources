@@ -1,0 +1,40 @@
+h0 = 0.08;
+[t,h] = ode45('tank',[0 400],h0);
+plot(t,h);
+hold on
+xlabel('t = Time (s)');
+ylabel('h = height (m)');
+%from ws3
+depth = [0.08:-0.005:0];% dpeth of water recomand:[x x x x x ...]
+trial1 = [0 30 40 62 79 100 116 136 157 175 195 214 235 255 274 298 317];
+trial2 = [0 23 42 64 87 109 171 153 175 199 221 243 268 291 316 341 366];
+trial3 = [0 23 43 66 86 109 130 154 176 200 222 246 270 292 316 339 366];
+trial4 = [0 22 41 62 80 101 121 143 162 184 204 226 245 266 286 308 333];
+trial5 = [0 23 40 59 78 98 116 137 158 177 196 216 234 254 273 294 316];
+%step 1 
+plot(trial5,depth,'ro');%change trial number
+hold on 
+plot(trial4,depth,'ro');%change trial number
+hold on 
+plot(trial3,depth,'ro');%change trial number
+hold on 
+plot(trial2,depth,'ro');%change trial number
+hold on 
+plot(trial1,depth,'ro');%change trial number
+hold on 
+
+%xlabel('time (s)');
+%ylabel('square root of height (m)');
+%title('draining experiment- trail 5');
+
+%----------------------------------------ignore--------------------------
+%step 2 
+%Tools-basic fitting ,'linear'&'show equation'
+%g = 9.8;
+%A = 0.205 * 0.15;
+%a0 = (0.002 ^ 2) * pi;
+%gradient = (-0.00077 - 0.00066 - 0.00073) / 3;% average of 3 gradients
+Cd = - gradient * (A / a0 * sqrt(2 / g));
+%remenber to put data above to calculate three gradiants and three Cd and
+%take average value of Cd
+%Cd = 0.79592

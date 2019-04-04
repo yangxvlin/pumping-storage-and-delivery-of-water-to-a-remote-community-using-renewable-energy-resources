@@ -1,0 +1,8 @@
+function dy1dt = (t,y1)
+function dy2dt = (t,y2)
+%UNTITLED1 Summary of this function goes here
+%  Detailed explanation goes here
+(y1) = 5;
+y2 = 2;
+dy1dt = y(y2);
+dy2dt = y(y1) - y(y2);

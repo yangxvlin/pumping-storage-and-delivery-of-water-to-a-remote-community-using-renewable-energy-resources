@@ -1,0 +1,2 @@
+load CP.nat
+lambdas = 2 * pi / 60 * 15 * 52
